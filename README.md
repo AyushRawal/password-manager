@@ -22,7 +22,7 @@ Whenever a new user logs in, he/she is presented with some keys that can be stor
 
 This is the web frontend of the project.
 
-The backend repository : [password-manager-backend](github.com/AyushRawal/password-manager-backend).
+The backend repository : [password-manager-backend](https://github.com/AyushRawal/password-manager-backend).
 
 
 ## Installation
