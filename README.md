@@ -20,12 +20,9 @@ To help with that, I am using [Shamir's Secret Sharing](https://en.wikipedia.org
 Whenever a new user logs in, he/she is presented with some keys that can be stored somewhere safe and can be used to retrieve the master password.
 
 
-This is the backend of the project.
+This is the web frontend of the project.
 
-The web frontend repository : [password-manager-web-frontend](github.com/AyushRawal/password-manager-web-frontend).
-
-
-It is a REST API written using Flask in Python.
+The backend repository : [password-manager-backend](github.com/AyushRawal/password-manager-backend).
 
 
 ## Installation
