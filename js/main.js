@@ -1,4 +1,5 @@
-const BASE_URL = "http://127.0.0.1:5000/user/";
+// const BASE_URL = "http://127.0.0.1:5000/user/";
+const BASE_URL = "https://secure-passwd-manager.herokuapp.com/user/"
 let USERNAME, PASSWORD;
 let table = document.getElementById("records");
 let records = [];
@@ -101,8 +102,8 @@ function delete_row(id)
 document.getElementById("login").addEventListener("click", () => {
     USERNAME = document.getElementById("username").value;
     PASSWORD = document.getElementById("password").value;
-    PASSWORD = CryptoJS.SHA256(PASSWORD).toString(CryptoJS.enc.Base64);
-    USERNAME = CryptoJS.HmacSHA256(USERNAME, PASSWORD).toString(CryptoJS.enc.Base64);
+    PASSWORD = CryptoJS.SHA256(PASSWORD).toString(CryptoJS.enc.Hex);
+    USERNAME = CryptoJS.HmacSHA256(USERNAME, PASSWORD).toString(CryptoJS.enc.Hex);
     get_records();
     console.log(USERNAME);
     console.log(PASSWORD);
