@@ -95,6 +95,11 @@ function delete_entry(id) {
 document.getElementById("login").addEventListener("click", () => {
   USERNAME = login_form["username"].value;
   PASSWORD = login_form["password"].value;
+	if (USERNAME === "" || PASSWORD === "")
+	{
+		return;
+	}
+	document.getElementById("login-msg").innerText += USERNAME;
   PASSWORD = CryptoJS.SHA256(PASSWORD).toString(CryptoJS.enc.Hex);
   USERNAME = CryptoJS.HmacSHA256(USERNAME, PASSWORD).toString(CryptoJS.enc.Hex);
   get_records();
@@ -128,3 +133,23 @@ document.getElementById("delete").addEventListener("click", () => {
     view_id = "";
   }
 });
+
+document.getElementById("login-pass").addEventListener("click", () => {
+	let type = login_form["password"].getAttribute("type") === "password" ? "text" : "password";
+	login_form["password"].setAttribute("type", type);
+})
+
+document.getElementById("entry-pass").addEventListener("click", () => {
+	let type = view["password"].getAttribute("type") === "password" ? "text" : "password";
+	view["password"].setAttribute("type", type);
+})
+
+document.getElementById("copy-entry-pass").addEventListener("click", () => {
+	let view_pass = view["password"];
+	let type = view_pass.getAttribute("type");
+	view_pass.setAttribute("type", "text");
+	view_pass.select();
+	view_pass.setSelectionRange(0, 99999);
+	document.execCommand("copy");
+	view_pass.setAttribute("type", type);
+})
