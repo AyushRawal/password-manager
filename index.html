@@ -1,83 +1,95 @@
 <!DOCTYPE html>
-<html lang='en'>
-    <head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Password Manager</title>
-		<link rel="stylesheet" href="./css/style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Mirza&display=swap" rel="stylesheet">  
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mirza&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+  <body>
+    <div class="heading">
+      password manager <i class="material-icons">lock</i>
+    </div>
 
+    <nav class="top-nav">
+      <div class="page2-nav" id="page2-nav">
+        <ul>
+          <li>logged in as ${username}</li>
+          <li><div class="separator"></div></li>
+          <li><a href="http://127.0.0.1:8080">logout</a></li>
+        </ul>
+      </div>
+    </nav>
 
-    </head>
-    <body>
-		<div class="heading">password manager <i class="material-icons">lock</i></div>
-		
-        <nav class="top-nav">
-			<div class="page2-nav" id="page2-nav">
-				<ul>
-					<li>logged in as ${username}</li>
-					<li><div class="separator"></div></li>
-					<li><a href="http://127.0.0.1:8080">logout</a></li>
-				</ul>
-			</div>
-        </nav>
-
-		<div class="page1" id="page1">
-			<div class="quote">the most secure password manager possible (theoretically)! <br> made with  <font color=red>❤</font> for everyone</div>
-			<div class="form1">
-				<form id="login-form">
-					<div>
-						<label>username</label>
-						<input type="text" name="username">
-					</div>
-					<div>
-						<label>password</label>
-						<input type="password" name="password">
-					</div>
-					<br>
-					<input type="button" value="login" id="login">
-				</form>
-			</div>
-			<div class="buttons">
-				<a href="./recovery.html" class="btn" type="button">recover master password</a>
-				<br>
-				<a href="./generate.html" class="btn" type="button">generate recovery keys</a>
-			</div>
-		</div>
-		<div class="page2" id="page2">
-			<div>
-				<div class="add-btn">
-					<button type="button" id="add">+</button>
-					<span class="tooltip">Add record</span>
-				</div>
-				<ul class="entries" id="entries">
-				</ul>
-			</div>
-			<div class="form2">
-				<form id="record-view">
-					<!-- <label class="hidden">id</label> -->
-					<!-- <input type="text" name="id" class="hidden"> -->
-					<label>title</label>
-					<input type="text" name="title">
-					<label>password</label>
-					<input type="text" name="password">
-					<label>url</label>
-					<input type="text" name="url">
-					<label>notes</label>
-					<textarea rows=12 name="notes"></textarea>
-					<div class="spacer"></div>
-					<input type="button" value="save changes" id="save">
-					<input type="button" value="delete" id="delete">
-				</form>
-			</div>
-		</div>
+    <div class="page1" id="page1">
+      <div class="quote">
+        the most secure password manager possible (theoretically)! <br />
+        made with <font color="red">❤</font> for everyone
+      </div>
+      <div class="form1">
+        <form id="login-form">
+          <div>
+            <label>username</label>
+            <input type="text" name="username" />
+          </div>
+          <div>
+            <label>password</label>
+            <input type="password" name="password" />
+          </div>
+          <br />
+          <input type="button" value="login" id="login" />
+        </form>
+      </div>
+      <div class="buttons">
+        <a href="./recovery.html" class="btn" type="button"
+          >recover master password</a
+        >
+        <br />
+        <a href="./generate.html" class="btn" type="button"
+          >generate recovery keys</a
+        >
+      </div>
+    </div>
+    <div class="page2" id="page2">
+      <div>
+        <div class="add-btn">
+          <button type="button" id="add">+</button>
+          <span class="tooltip">Add record</span>
+        </div>
+        <ul class="entries" id="entries"></ul>
+      </div>
+      <div class="form2">
+        <form id="record-view">
+          <!-- <label class="hidden">id</label> -->
+          <!-- <input type="text" name="id" class="hidden"> -->
+          <label>title</label>
+          <input type="text" name="title" />
+          <label>password</label>
+          <input type="text" name="password" />
+          <label>url</label>
+          <input type="text" name="url" />
+          <label>notes</label>
+          <textarea rows="12" name="notes"></textarea>
+          <div class="spacer"></div>
+          <input type="button" value="save changes" id="save" />
+          <input type="button" value="delete" id="delete" />
+        </form>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src='./js/main.js'></script>
-    </body>
+    <script src="./js/main.js"></script>
+  </body>
 </html>

@@ -1,6 +1,5 @@
 # Password Manager
 
-
 The most secure online password manager (theoretically).
 
 I have always struggled with my passwords. I use capital letters, numbers, special symbols in my passwords and keep them unrelated to myself for maximum security and peace of mind, but that also makes them hard to remember, especially when there are so many of them.
@@ -19,11 +18,9 @@ To help with that, I am using [Shamir's Secret Sharing](https://en.wikipedia.org
 
 Whenever a new user logs in, he/she is presented with some keys that can be stored somewhere safe and can be used to retrieve the master password.
 
-
 This is the web frontend of the project.
 
 The backend repository : [password-manager-backend](https://github.com/AyushRawal/password-manager-backend).
-
 
 ## Installation
 
