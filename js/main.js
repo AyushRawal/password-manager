@@ -1,8 +1,11 @@
 // const BASE_URL = "http://127.0.0.1:5000/user/";
 const BASE_URL = "https://secure-passwd-manager.herokuapp.com/user/"
 let USERNAME, PASSWORD;
-let table = document.getElementById("records");
-let records = [];
+let entries = document.getElementById("entries");
+let view = document.getElementById("record-view");
+let login_form = document.getElementById("login-form");
+let view_id = "";
+let records = {};
 
 async function get_records() {
     let response = await axios.get(BASE_URL + USERNAME);
@@ -13,104 +16,119 @@ async function get_records() {
         let data = response.data["records"];
         for (let i = 0; i < data.length; ++i)
         {
+			let id = data[i]["id"];
             let record = {
-                id: data[i]["id"],
                 title: CryptoJS.AES.decrypt(data[i]["title"], PASSWORD).toString(CryptoJS.enc.Utf8),
                 password: CryptoJS.AES.decrypt(data[i]["password"], PASSWORD).toString(CryptoJS.enc.Utf8)
             };
-            add_row(record);
+			records[id] = record;
+            add_entry(id, record);
         }
     }
 }
 
 async function post_record(title, password) {
     let record = {
-        id: '',
         title: title,
         password: password,
     };
     title = CryptoJS.AES.encrypt(title, PASSWORD).toString();
     password = CryptoJS.AES.encrypt(password, PASSWORD).toString();
     let response = await axios.post(BASE_URL + USERNAME, {'title': title, 'password': password});
-    record["id"] = response.data["id"];
-    add_row(record);
+	let id = response.data["id"];
+    records[id] = record;
+	view_id = id;
+    add_entry(id, record);
 }
 
-async function patch_record(id) {
-    let title = document.getElementById("title").value;
-    let password = document.getElementById("entry_password").value;
+async function patch_record(id, title, password) {
     let record = {
-        id: id,
         title: title,
         password: password,
     };
     title = CryptoJS.AES.encrypt(title, PASSWORD).toString();
     password = CryptoJS.AES.encrypt(password, PASSWORD).toString();
     let response = await axios.patch(BASE_URL + USERNAME, {'id': id, 'title': title, 'password': password});
-    modify_row(record);
+	records[id] = record;
+    modify_entry(id, record);
 }
 
 async function delete_record(id) {
     let response = axios.delete(BASE_URL + USERNAME, {params : {'id': id}});
-    delete_row(id);
+    delete_entry(id);
 }
 
-function add_row(record)
+function add_entry(id, record)
 {
-    records.push(record);
-    let row = table.insertRow();
-    row.insertCell().innerHTML = record["title"];
-    row.insertCell().innerHTML = record["password"];
-    row.insertCell().innerHTML = `<button onclick="delete_record('${record['id']}')"> Delete </button>`
-    row.insertCell().innerHTML = `<button onclick="patch_record('${record['id']}')"> Edit </button>`
+	let li = document.createElement("li");
+	let button = document.createElement("button");
+	button.setAttribute("onclick", `show_record('${id}')`);
+	button.setAttribute("id", id);
+	button.innerText = record["title"];
+	li.appendChild(button);
+	entries.appendChild(li);
 }
 
-function modify_row(record)
+
+function show_record(id)
 {
-    let index;
-    for (let i = 0; i < records.length; ++i)
-    {
-        if (records[i]["id"] === record["id"])
-        {
-            index = i;
-            records[i]["title"] = record["title"];
-            records[i]["password"] = record["password"];
-            break;
-        }
-    }
-    let row = table.rows[index];
-    row.cells[0].innerHTML = record["title"];
-    row.cells[1].innerHTML = record["password"];
+	view_id = id;
+	view["title"].value = records[id]["title"];
+	view["password"].value = records[id]["password"];
 }
 
-function delete_row(id)
+function modify_entry(id, record)
 {
-    let index;
-    console.log(id);
-    for (let i = 0; i < records.length; ++i)
-    {
-        if (records[i]["id"] === id)
-        {
-            index = i;
-            table.deleteRow(i);
-            break;
-        }
-    }
-    records.splice(index, 1);
+	let entryBtn = document.getElementById(id);
+	entryBtn.innerText = record['title'];
 }
 
-document.getElementById("login").addEventListener("click", () => {
-    USERNAME = document.getElementById("username").value;
-    PASSWORD = document.getElementById("password").value;
+function delete_entry(id)
+{
+	delete records[id];
+	let entryBtn = document.getElementById(id);
+	entryBtn.remove();
+}
+
+
+document.getElementById("login").addEventListener("click", (event) => {
+	USERNAME = login_form['username'].value;
+    PASSWORD = login_form['password'].value;
     PASSWORD = CryptoJS.SHA256(PASSWORD).toString(CryptoJS.enc.Hex);
     USERNAME = CryptoJS.HmacSHA256(USERNAME, PASSWORD).toString(CryptoJS.enc.Hex);
     get_records();
-    console.log(USERNAME);
-    console.log(PASSWORD);
+	let page1 = document.getElementById("page1");
+	page1.style.display = "none";
+	let page2 = document.getElementById("page2");
+	page2.style.display = "flex";
+	let page2_nav = document.getElementById("page2-nav");
+	page2_nav.style.display = "block";
 });
 
 document.getElementById("add").addEventListener("click", () => {
-    if (USERNAME !== undefined) {
-        post_record(document.getElementById("title").value, document.getElementById("entry_password").value);
-    }
+	view.reset();
+	view_id = "";
 });
+
+document.getElementById("save").addEventListener("click", () => {
+	let title = view["title"].value;
+	let password = view["password"].value;
+	if (view_id.length === 0)
+	{
+		post_record(title, password);
+	}
+	else
+	{
+		patch_record(view_id, title, password);
+	}
+
+})
+
+document.getElementById("delete").addEventListener("click", () => {
+	if (view_id.length === 36)
+	{
+		delete_record(view_id);
+		view.reset();
+		view_id = "";
+	}
+})
