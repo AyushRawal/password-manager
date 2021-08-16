@@ -5,6 +5,64 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="css/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mirza&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
   </head>
-  <body></body>
+  <body>
+    <div class="heading">
+      password manager <i class="material-icons">lock</i>
+    </div>
+
+    <nav class="top-nav">
+      <div class="page2-nav" id="page2-nav"></div>
+    </nav>
+    <div class="form3">
+      <form id="pass-form">
+        <div>
+          <label>password</label>
+          <input type="password" name="password" />
+        </div>
+        <span><input type="checkbox" id="pass-vis" />show password</span>
+        <br />
+        <input type="button" value="generate" id="generate" />
+      </form>
+    </div>
+    <div class="recovery-keys">
+      <ul>
+        <span>
+          your recovery keys:
+          <div>
+            <a id="download-keys" download="keys.txt"><i class="material-icons">download </i></a>
+            <button type="button" id="copy-keys">
+              <i class="material-icons">content_copy</i>
+            </button>
+          </div>
+        </span>
+        <div id="recovery-keys">
+          <li style="width: 500px">&nbsp;</li>
+          <li style="width: 500px">&nbsp;</li>
+          <li style="width: 500px">&nbsp;</li>
+          <li style="width: 500px">&nbsp;</li>
+          <li style="width: 500px">&nbsp;</li>
+        </div>
+      </ul>
+    </div>
+    <div class="quote">
+      in case you ever forget your master password, you can recover it
+      <a href="./recovery.html">here</a>, by providing any 3 of these.
+      <br />
+      you should keep these keys safe and secure at different places.
+    </div>
+
+    <script src="./js/secrets.min.js"></script>
+    <script src="./js/generate.js"></script>
+  </body>
 </html>

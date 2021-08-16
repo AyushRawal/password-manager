@@ -48,7 +48,7 @@ body {
   padding: 5px 8px;
   margin: 0;
   text-align: right;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 .top-nav li .separator {
   border-right: 1px solid white;
@@ -89,11 +89,11 @@ body {
   flex-wrap: wrap;
 }
 .form1 label {
-	width: 70px;
+  width: 70px;
   color: white;
   padding: 0;
   margin: 5px 10px 5px 0;
-	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 .form1 input[type="text"],
 input[type="password"] {
@@ -107,10 +107,10 @@ input[type="password"] {
   outline: none;
 }
 .form1 span {
-	color: white;
-	align-self: flex-end;
-	margin: 10px 0;
-	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+  align-self: flex-end;
+  margin: 10px 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 #login {
   padding: 10px 15px;
@@ -138,7 +138,7 @@ input[type="password"] {
   text-decoration: none;
   color: white;
   cursor: pointer;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 .btn:focus {
   outline: 1px solid white;
@@ -184,10 +184,10 @@ input[type="password"] {
 }
 .entries {
   width: 240px;
-  height: min(70vh, 100%);
   list-style-type: none;
   flex-grow: 1;
   overflow: auto;
+  height: 60vh;
 }
 .entries li {
   width: 90%;
@@ -215,7 +215,7 @@ input[type="password"] {
   margin: 15px;
   display: grid;
   grid-gap: 15px;
-	align-items: center;
+  align-items: center;
   grid-template-columns: 65px auto auto;
 }
 .form2 .spacer {
@@ -225,7 +225,7 @@ input[type="password"] {
 .form2 label {
   color: white;
   padding: 0;
-	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 .form2 form input[type="text"],
 input[type="password"],
@@ -243,23 +243,23 @@ textarea {
   outline: none;
 }
 .form2 form span {
-	grid-column: 2 / 3;
-	color: white;
-	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  grid-column: 2 / 3;
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 #copy-entry-pass {
-	grid-column: 3 / -1;
-	padding: 10px 15px;
-	margin: 5px 0 0 0;
-	background-color: #a6a6a6 ;
-	border: none;
-	border-radius: 0;
-	color: black;
-	cursor: poiner;
-	justify-self: end;
+  grid-column: 3 / -1;
+  padding: 10px 15px;
+  margin: 5px 0 0 0;
+  background-color: #a6a6a6;
+  border: none;
+  border-radius: 0;
+  color: black;
+  cursor: poiner;
+  justify-self: end;
 }
 #copy-entry-pass:focus {
-	outline: 1px solid white;
+  outline: 1px solid white;
 }
 #save {
   grid-column: 3 / -1;
@@ -292,12 +292,12 @@ textarea {
     grid-template-columns: auto auto;
     grid-gap: 5px;
   }
-	.form2 form span {
-		grid-column: 1 / 2;
-	}
-	#copy-entry-pass {
-		grid-column: 2 / -1;
-	}
+  .form2 form span {
+    grid-column: 1 / 2;
+  }
+  #copy-entry-pass {
+    grid-column: 2 / -1;
+  }
   #save {
     grid-column: 2 / -1;
   }
@@ -306,9 +306,9 @@ textarea {
   }
 }
 @media screen and (max-width: 680px) {
-	.entries {
-		height : 30vh;
-	}
+  .entries {
+    height: 30vh;
+  }
   .page2 {
     flex-direction: column;
     align-items: center;
@@ -320,12 +320,12 @@ textarea {
     grid-template-columns: 65px auto auto;
     grid-gap: 15px;
   }
-	.form2 form span {
-		grid-column: 2 / 3;
-	}
-	#copy-entry-pass {
-		grid-column: 3 / -1;
-	}
+  .form2 form span {
+    grid-column: 2 / 3;
+  }
+  #copy-entry-pass {
+    grid-column: 3 / -1;
+  }
   #save {
     grid-column: 3 / -1;
   }
@@ -338,16 +338,124 @@ textarea {
     grid-template-columns: auto auto;
     grid-gap: 5px;
   }
-	.form2 form span {
-		grid-column: 1 / 2;
-	}
-	#copy-entry-pass {
-		grid-column: 2 / -1;
-	}
+  .form2 form span {
+    grid-column: 1 / 2;
+  }
+  #copy-entry-pass {
+    grid-column: 2 / -1;
+  }
   #save {
     grid-column: 2 / -1;
   }
   #delete {
     grid-column: 2 / -1;
   }
+}
+
+.form3 {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form3 form {
+  padding: 25px;
+  margin: 25px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #747474;
+}
+.form3 div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+  flex-wrap: wrap;
+}
+.form3 label {
+  width: 70px;
+  color: white;
+  padding: 0;
+  margin: 5px 10px 5px 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.form3 input[type="text"] {
+  flex-grow: 1;
+  background-color: #c4c4c4;
+  border: none;
+  border-radius: 0;
+  padding: 5px;
+}
+.form3 form input:focus {
+  outline: none;
+}
+.form3 span {
+  color: white;
+  align-self: flex-end;
+  margin: 10px 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+#generate {
+  padding: 10px 15px;
+  background-color: #039adb;
+  border: none;
+  border-radius: 0;
+  color: white;
+  cursor: pointer;
+}
+#generate:focus {
+  outline: 1px solid white;
+}
+.recovery-keys {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.recovery-keys ul {
+  padding: 0;
+  margin: 40px;
+  list-style-type: none;
+}
+.recovery-keys span {
+  color: white;
+  margin: 15px 0 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#download-keys {
+  background-color: #6f6f6f;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 14px 5px 3px 5px;
+  margin: 5px;
+}
+#copy-keys {
+  padding: 5px 5px 3px 5px;
+  margin: 5px;
+  background-color: #6f6f6f;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+#download-keys:focus,
+#copy-keys:focus {
+  outline: 1px solid white;
+}
+.recovery-keys li {
+  background-color: #c4c4c4;
+  padding: 5px;
+  margin: 5px;
+}
+.recovery-keys li:nth-child(even) {
+  background-color: #6f6f6f;
+}
+.quote a {
+  color: white;
 }
