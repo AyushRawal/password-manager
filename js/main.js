@@ -20,6 +20,12 @@ async function get_records() {
 				password: CryptoJS.AES.decrypt(data[i]["password"], PASSWORD).toString(
 					CryptoJS.enc.Utf8
 				),
+				url: CryptoJS.AES.decrypt(data[i]["url"], PASSWORD).toString(
+					CryptoJS.enc.Utf8
+				),
+				notes: CryptoJS.AES.decrypt(data[i]["notes"], PASSWORD).toString(
+					CryptoJS.enc.Utf8
+				),
 			};
 			records[id] = record;
 			add_entry(id, record);
@@ -27,16 +33,22 @@ async function get_records() {
 	}
 }
 
-async function post_record(title, password) {
+async function post_record(title, password, url, notes) {
 	let record = {
 		title: title,
 		password: password,
+        url: url,
+        notes: notes,
 	};
 	title = CryptoJS.AES.encrypt(title, PASSWORD).toString();
 	password = CryptoJS.AES.encrypt(password, PASSWORD).toString();
+	url = CryptoJS.AES.encrypt(url, PASSWORD).toString();
+	notes = CryptoJS.AES.encrypt(notes, PASSWORD).toString();
 	let response = await axios.post(BASE_URL + USERNAME, {
 		title: title,
 		password: password,
+        url: url,
+        notes: notes,
 	});
 	let id = response.data["id"];
 	records[id] = record;
@@ -44,17 +56,23 @@ async function post_record(title, password) {
 	add_entry(id, record);
 }
 
-async function patch_record(id, title, password) {
+async function patch_record(id, title, password, url, notes) {
 	let record = {
 		title: title,
 		password: password,
+        url: url,
+        notes: notes,
 	};
 	title = CryptoJS.AES.encrypt(title, PASSWORD).toString();
 	password = CryptoJS.AES.encrypt(password, PASSWORD).toString();
+	url = CryptoJS.AES.encrypt(url, PASSWORD).toString();
+	notes = CryptoJS.AES.encrypt(notes, PASSWORD).toString();
 	let response = await axios.patch(BASE_URL + USERNAME, {
 		id: id,
 		title: title,
 		password: password,
+        url: url,
+        notes: notes,
 	});
 	records[id] = record;
 	modify_entry(id, record);
@@ -79,6 +97,8 @@ function show_record(id) {
 	view_id = id;
 	view["title"].value = records[id]["title"];
 	view["password"].value = records[id]["password"];
+	view["url"].value = records[id]["url"];
+	view["notes"].value = records[id]["notes"];
 }
 
 function modify_entry(id, record) {
@@ -119,10 +139,12 @@ document.getElementById("add").addEventListener("click", () => {
 document.getElementById("save").addEventListener("click", () => {
 	let title = view["title"].value;
 	let password = view["password"].value;
+	let url = view["url"].value;
+	let notes = view["notes"].value;
 	if (view_id.length === 0) {
-		post_record(title, password);
+		post_record(title, password, url, notes);
 	} else {
-		patch_record(view_id, title, password);
+		patch_record(view_id, title, password, url, notes);
 	}
 });
 
