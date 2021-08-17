@@ -36,6 +36,11 @@ document.getElementById("copy-keys").addEventListener("click", () => {
     textarea.setSelectionRange(0, 99999);
     document.execCommand("copy");
     document.body.removeChild(textarea);
+    let tooltip = document.getElementById("copy-tooltip");
+    tooltip.style.visibility = "visible";
+    setTimeout(() => {
+        tooltip.style.visibility = "hidden";
+    }, 700);
 })
 
 document.getElementById("pass-vis").addEventListener("click", () => {
@@ -51,3 +56,6 @@ down_btn.addEventListener("click", () => {
     let text = get_keys();
     down_btn.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
 })
+
+function noenter() {
+  return !(window.event && window.event.keyCode == 13); }

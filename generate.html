@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title></title>
+    <title>Generate recovery keys</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="css/style.css" rel="stylesheet" />
@@ -28,31 +28,38 @@
       <form id="pass-form">
         <div>
           <label>password</label>
-          <input type="password" name="password" />
+          <input
+            type="password"
+            name="password"
+            onkeypress="return noenter();"
+          />
         </div>
         <span><input type="checkbox" id="pass-vis" />show password</span>
         <br />
         <input type="button" value="generate" id="generate" />
       </form>
     </div>
-    <div class="recovery-keys">
-      <ul>
-        <span>
-          your recovery keys:
-          <div>
-            <a id="download-keys" download="keys.txt"><i class="material-icons">download </i></a>
-            <button type="button" id="copy-keys">
-              <i class="material-icons">content_copy</i>
-            </button>
-          </div>
-        </span>
-        <div id="recovery-keys">
-          <li style="width: 500px">&nbsp;</li>
-          <li style="width: 500px">&nbsp;</li>
-          <li style="width: 500px">&nbsp;</li>
-          <li style="width: 500px">&nbsp;</li>
-          <li style="width: 500px">&nbsp;</li>
+    <div class="btns">
+      <span>
+        <div>your recovery keys:</div>
+        <div>
+          <span id="copy-tooltip">copied !</span>
+          <button type="button" id="copy-keys">
+            <i class="material-icons">content_copy</i>
+          </button>
+          <a id="download-keys" download="keys.txt"
+            ><i class="material-icons">download </i></a
+          >
         </div>
+      </span>
+    </div>
+    <div class="recovery-keys">
+      <ul id="recovery-keys">
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
       </ul>
     </div>
     <div class="quote">

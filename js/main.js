@@ -98,7 +98,7 @@ document.getElementById("login").addEventListener("click", () => {
 	if (USERNAME === "" || PASSWORD === "") {
 		return;
 	}
-	document.getElementById("login-msg").innerText += USERNAME;
+	document.getElementById("login-msg").innerText += " " + USERNAME;
 	PASSWORD = CryptoJS.SHA256(PASSWORD).toString(CryptoJS.enc.Hex);
 	USERNAME = CryptoJS.HmacSHA256(USERNAME, PASSWORD).toString(CryptoJS.enc.Hex);
 	get_records();
@@ -151,10 +151,18 @@ document.getElementById("entry-pass").addEventListener("click", () => {
 
 document.getElementById("copy-entry-pass").addEventListener("click", () => {
 	let view_pass = view["password"];
+    if (view_pass.value.length === 0) {
+        return;
+    }
 	let type = view_pass.getAttribute("type");
 	view_pass.setAttribute("type", "text");
 	view_pass.select();
 	view_pass.setSelectionRange(0, 99999);
 	document.execCommand("copy");
 	view_pass.setAttribute("type", type);
+    let tooltip = document.getElementById("copy-tooltip");
+    tooltip.style.visibility = "visible";
+    setTimeout(() => {
+        tooltip.style.visibility = "hidden";
+    }, 700);
 });

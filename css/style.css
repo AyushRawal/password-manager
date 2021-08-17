@@ -4,6 +4,7 @@ body {
 }
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
   margin-left: 5px;
 }
 ::-webkit-scrollbar-track {
@@ -125,7 +126,7 @@ input[type="password"] {
 }
 .buttons {
   padding: 0;
-  margin: 35px 0 0 0;
+  margin: 35px 0 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -203,9 +204,6 @@ input[type="password"] {
 .entries li button:focus {
   outline: 1px solid white;
 }
-.entries li:nth-child(even) button {
-  background-color: #6f6f6f;
-}
 .form2 {
   flex-grow: 1;
   max-width: 1000px;
@@ -247,16 +245,21 @@ textarea {
   color: white;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-#copy-entry-pass {
+.form2 form .copy-btn {
   grid-column: 3 / -1;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#copy-entry-pass {
   padding: 10px 15px;
-  margin: 5px 0 0 0;
+  margin: 5px 0 0 5px;
   background-color: #a6a6a6;
   border: none;
   border-radius: 0;
   color: black;
   cursor: poiner;
-  justify-self: end;
 }
 #copy-entry-pass:focus {
   outline: 1px solid white;
@@ -295,7 +298,7 @@ textarea {
   .form2 form span {
     grid-column: 1 / 2;
   }
-  #copy-entry-pass {
+  .form2 form .copy-btn {
     grid-column: 2 / -1;
   }
   #save {
@@ -323,7 +326,7 @@ textarea {
   .form2 form span {
     grid-column: 2 / 3;
   }
-  #copy-entry-pass {
+  .form2 form .copy-btn {
     grid-column: 3 / -1;
   }
   #save {
@@ -341,7 +344,7 @@ textarea {
   .form2 form span {
     grid-column: 1 / 2;
   }
-  #copy-entry-pass {
+  .form2 form .copy-btn {
     grid-column: 2 / -1;
   }
   #save {
@@ -353,14 +356,13 @@ textarea {
 }
 
 .form3 {
-  margin: 10px;
+  margin: 35px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .form3 form {
   padding: 25px;
-  margin: 25px;
   height: 140px;
   display: flex;
   flex-direction: column;
@@ -417,15 +419,32 @@ textarea {
 }
 .recovery-keys ul {
   padding: 0;
-  margin: 40px;
+  overflow: auto;
   list-style-type: none;
 }
-.recovery-keys span {
+.btns {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: white;
-  margin: 15px 0 15px 0;
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btns span {
+  flex-grow: 1;
+  max-width: 600px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+} 
+#copy-tooltip {
+  visibility: hidden;
+  background-color: #00000055;
+  color: #ffffffcc;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 4px;
+  transform: opacity 0.3s;
 }
 #download-keys {
   background-color: #6f6f6f;
@@ -433,28 +452,23 @@ textarea {
   border-radius: 5px;
   cursor: pointer;
   padding: 14px 5px 3px 5px;
-  margin: 5px;
+  margin: 0 0 0 5px;
 }
 #copy-keys {
   padding: 5px 5px 3px 5px;
-  margin: 5px;
+  margin: 15px 0 15px 5px;
   background-color: #6f6f6f;
   border: none;
   border-radius: 5px;
   color: white;
   cursor: pointer;
 }
-#download-keys:focus,
-#copy-keys:focus {
-  outline: 1px solid white;
-}
 .recovery-keys li {
   background-color: #c4c4c4;
   padding: 5px;
+  min-width: 620px;
+  width: fit-content;
   margin: 5px;
-}
-.recovery-keys li:nth-child(even) {
-  background-color: #6f6f6f;
 }
 .quote a {
   color: white;
