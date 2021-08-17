@@ -1,10 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title></title>
+    <title>Recover master password</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="css/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mirza&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
   </head>
-  <body></body>
+  <body>
+    <div class="heading">
+      password manager <i class="material-icons">lock</i>
+    </div>
+
+    <nav class="top-nav">
+      <div class="page2-nav" id="page2-nav"></div>
+    </nav>
+
+    <div class="form4">
+      <form id="recovery-form">
+        <label>enter any 3 recovery keys:</label>
+        <input type="text" name="key1">
+        <input type="text" name="key2">
+        <input type="text" name="key3">
+        <br>
+        <input type="button" id="recover" value="recover">
+      </form>
+    </div>
+
+    <div class="recovered-pass">
+      <div>
+        <label>
+          your password : 
+        </label>
+        <div id="password">&nbsp;</div>
+      </div>
+      <div>
+        <button id="copy-pass">
+          <i class="material-icons">content_copy</i>
+        </button>
+        <div id="copy-tooltip">copied !</div>
+      </div>
+    </div>
+
+    <script src="./js/secrets.min.js"></script>
+    <script src="./js/recover.js"></script>
+  </body>
 </html>

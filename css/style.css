@@ -473,3 +473,93 @@ textarea {
 .quote a {
   color: white;
 }
+
+
+.form4 {
+  margin: 35px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form4 form {
+  flex-grow: 1;
+  max-width: 800px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #747474;
+}
+
+.form4 label {
+  color: white;
+  margin: 5px 0;
+  align-self: flex-start;
+}
+
+.form4 input[type="text"] {
+  background-color: #c4c4c4;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border: none;
+  border-radius: 0;
+  padding: 5px;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.form4 input[type="text"]:focus {
+  outline: none;
+}
+
+#recover {
+  padding: 10px 15px;
+  background-color: #039adb;
+  border: none;
+  border-radius: 0;
+  color: white;
+  cursor: pointer;
+}
+#recover:focus {
+  outline: 1px solid white;
+}
+
+.recovered-pass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.recovered-pass label {
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin: 8px;  
+}
+.recovered-pass div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+}
+
+#password {
+  flex-grow: 1;
+  background-color: #c4c4c4;
+  padding: 5px;
+  margin: 0 10px;
+  outline: none;
+  min-width: 200px;
+}
+
+#copy-pass {
+  padding: 5px 5px 3px 5px;
+  margin: 10px 10px 10px 35px;
+  background-color: #6f6f6f;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
