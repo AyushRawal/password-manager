@@ -8,8 +8,8 @@ let view_id = "";
 let records = {};
 
 async function get_records() {
-	let response = await axios.get(BASE_URL + USERNAME);
-	if (response.status !== 404) {
+	try {
+		let response = await axios.get(BASE_URL + USERNAME);
 		let data = response.data["records"];
 		for (let i = 0; i < data.length; ++i) {
 			let id = data[i]["id"];
@@ -30,57 +30,79 @@ async function get_records() {
 			records[id] = record;
 			add_entry(id, record);
 		}
+	} catch (error) {
+		if (error.response && error.response.status === 404) {
+			console.log("User not found, New user will be created.");
+		} else {
+			alert(
+				"Something went wrong!! Make sure you are connected to the internet."
+			);
+			console.error(error);
+		}
 	}
 }
 
 async function post_record(title, password, url, notes) {
-	let record = {
-		title: title,
-		password: password,
-        url: url,
-        notes: notes,
+	let post = {
+		title: CryptoJS.AES.encrypt(title, PASSWORD).toString(),
+		password: CryptoJS.AES.encrypt(password, PASSWORD).toString(),
+		url: CryptoJS.AES.encrypt(url, PASSWORD).toString(),
+		notes: CryptoJS.AES.encrypt(notes, PASSWORD).toString(),
 	};
-	title = CryptoJS.AES.encrypt(title, PASSWORD).toString();
-	password = CryptoJS.AES.encrypt(password, PASSWORD).toString();
-	url = CryptoJS.AES.encrypt(url, PASSWORD).toString();
-	notes = CryptoJS.AES.encrypt(notes, PASSWORD).toString();
-	let response = await axios.post(BASE_URL + USERNAME, {
-		title: title,
-		password: password,
-        url: url,
-        notes: notes,
-	});
-	let id = response.data["id"];
-	records[id] = record;
-	view_id = id;
-	add_entry(id, record);
+	try {
+		let response = await axios.post(BASE_URL + USERNAME, post);
+		let id = response.data["id"];
+		records[id] = {
+			title: title,
+			password: password,
+			url: url,
+			notes: notes,
+		};
+		view_id = id;
+		add_entry(id, records[id]);
+	} catch (error) {
+		alert(
+			"Something went wrong!! Make sure you are connected to the internet."
+		);
+		console.error(error);
+	}
 }
 
 async function patch_record(id, title, password, url, notes) {
-	let record = {
-		title: title,
-		password: password,
-        url: url,
-        notes: notes,
-	};
-	title = CryptoJS.AES.encrypt(title, PASSWORD).toString();
-	password = CryptoJS.AES.encrypt(password, PASSWORD).toString();
-	url = CryptoJS.AES.encrypt(url, PASSWORD).toString();
-	notes = CryptoJS.AES.encrypt(notes, PASSWORD).toString();
-	let response = await axios.patch(BASE_URL + USERNAME, {
+	let patch = {
 		id: id,
-		title: title,
-		password: password,
-        url: url,
-        notes: notes,
-	});
-	records[id] = record;
-	modify_entry(id, record);
+		title: CryptoJS.AES.encrypt(title, PASSWORD).toString(),
+		password: CryptoJS.AES.encrypt(password, PASSWORD).toString(),
+		url: CryptoJS.AES.encrypt(url, PASSWORD).toString(),
+		notes: CryptoJS.AES.encrypt(notes, PASSWORD).toString(),
+	};
+	try {
+		await axios.patch(BASE_URL + USERNAME, patch);
+		records[id] = {
+			title: title,
+			password: password,
+			url: url,
+			notes: notes,
+		};
+		modify_entry(id, records[id]);
+	} catch (error) {
+		alert(
+			"Something went wrong!! Make sure you are connected to the internet."
+		);
+		console.error(error);
+	}
 }
 
 async function delete_record(id) {
-	let response = axios.delete(BASE_URL + USERNAME, { params: { id: id } });
-	delete_entry(id);
+	try {
+		axios.delete(BASE_URL + USERNAME, { params: { id: id } });
+		delete_entry(id);
+	} catch (error) {
+		alert(
+			"Something went wrong!! Make sure you are connected to the internet."
+		);
+		console.error(error);
+	}
 }
 
 function add_entry(id, record) {
@@ -143,7 +165,7 @@ document.getElementById("save").addEventListener("click", () => {
 	let notes = view["notes"].value;
 	if (view_id.length === 0) {
 		post_record(title, password, url, notes);
-	} else {
+	} else if (view_id.length === 36) {
 		patch_record(view_id, title, password, url, notes);
 	}
 });
@@ -173,18 +195,18 @@ document.getElementById("entry-pass").addEventListener("click", () => {
 
 document.getElementById("copy-entry-pass").addEventListener("click", () => {
 	let view_pass = view["password"];
-    if (view_pass.value.length === 0) {
-        return;
-    }
+	if (view_pass.value.length === 0) {
+		return;
+	}
 	let type = view_pass.getAttribute("type");
 	view_pass.setAttribute("type", "text");
 	view_pass.select();
 	view_pass.setSelectionRange(0, 99999);
 	document.execCommand("copy");
 	view_pass.setAttribute("type", type);
-    let tooltip = document.getElementById("copy-tooltip");
-    tooltip.style.visibility = "visible";
-    setTimeout(() => {
-        tooltip.style.visibility = "hidden";
-    }, 700);
+	let tooltip = document.getElementById("copy-tooltip");
+	tooltip.style.visibility = "visible";
+	setTimeout(() => {
+		tooltip.style.visibility = "hidden";
+	}, 700);
 });
