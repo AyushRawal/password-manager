@@ -1,17 +1,20 @@
 # Password Manager
+
 <a href="https://github.com/AyushRawal/password-manager/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/AyushRawal/password-manager?style=flat-square"></a> <a href="https://github.com/AyushRawal/password-manager/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/AyushRawal/password-manager?style=flat-square"></a> <a href="https://github.com/AyushRawal/password-manager/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/AyushRawal/password-manager?style=flat-square"></a> <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-Welcome-green?style=flat-square"></a>
 
 The most secure way to manage passwords online (theoretically).
 
 ## Try out Password Manager
-### [Live](https://ayushrawal.github.com/password-manager)
+
+### [Live](https://ayushrawal.github.io/password-manager)
 
 ## Screenshots
+
 <p align="center">
 <img src="./screenshots/1.png"><br/><br/>
 <img src="./screenshots/2.png"><br/><br/>
-<img src="./screenshots/3.png" style="width: 350px;">&nbsp;&nbsp;
-<img src="./screenshots/4.png" style="width: 350px;">
+<img src="./screenshots/3.png" style="width: 250px;">&nbsp;&nbsp;
+<img src="./screenshots/4.png" style="width: 250px;">
 </p>
 
 ## About Password Manager 📖
@@ -37,8 +40,8 @@ The backend repository: [password-manager-backend](https://github.com/AyushRawal
 I have also made a CLI client for this: [passman](https://github.com/AyushRawal/password-manager-cli).
 
 ## Support 🙏
-Please drop a star ⭐ if you like this project.
 
+Please drop a star ⭐ if you like this project.
 
 _**Note :** Please feel free to ask for a feature or report any bug by opening an issue._
 
