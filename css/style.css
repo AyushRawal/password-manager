@@ -199,7 +199,7 @@ input[type="password"] {
   border: none;
   border-radius: 0;
   background-color: #c4c4c4;
-  height: 25px;
+  padding: 5px 0;
 }
 .entries li button:focus {
   outline: 1px solid white;
